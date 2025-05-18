@@ -7,7 +7,7 @@ import { RiderCoordinate, RiderCoordinateSchema } from './schemas/rider.coordina
 @Module({
   imports: [MongooseModule.forFeature(
     [{ name: RiderCoordinate.name, schema: RiderCoordinateSchema }]
-  )],
+  ) ],
   controllers: [RiderCoordinatesController],
   providers: [RiderCoordinatesService]
 })
