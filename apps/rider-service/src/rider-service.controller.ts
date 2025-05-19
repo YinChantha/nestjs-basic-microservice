@@ -1,12 +1,20 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { RiderServiceService } from './rider-service.service';
+import { MessagePattern } from '@nestjs/microservices';
 
-@Controller()
+@Controller('rider')
 export class RiderServiceController {
-  constructor(private readonly riderServiceService: RiderServiceService) {}
+  getHello(): any {
+    throw new Error('Method not implemented.');
+  }
+  constructor(private readonly riderServiceService: RiderServiceService) { }
 
-  @Get()
-  getHello(): string {
-    return this.riderServiceService.getHello();
+  // @Get(':id')
+  @MessagePattern({cmd:'get-rider'})
+  async getRiderbyId(
+    // @Param()
+    data: any
+  ) {
+    return Promise.resolve({ id: data.id, firstName: 'Jane', lastName: 'Doe', email: 'jane@gmail.com' })
   }
 }
